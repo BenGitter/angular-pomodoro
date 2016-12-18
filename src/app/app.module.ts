@@ -4,10 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { TimerComponent } from './timer/timer.component';
+import { TrelloComponent } from './trello/trello.component';
+import { SettingsComponent } from './settings/settings.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    TimerComponent,
+    TrelloComponent,
+    SettingsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

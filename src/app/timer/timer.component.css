@@ -1,0 +1,32 @@
+.timer{
+  /*background-color: white;*/
+}
+
+/* Circles */
+.circles{
+  height: 250px;
+  overflow: hidden;
+}
+.circle{
+  width: 220px;
+  height: 220px;
+  clear: both;
+  position: absolute;
+  top: 90px;
+  left: calc(50vw - 110px);
+}
+
+/* Settings */
+#controls{
+  position: absolute;
+  top: 140px;
+  width: 220px;
+  text-align: center;
+  left: calc(50vw - 110px);
+}
+
+/* State */
+#state{
+  width: 100%;
+  text-align: center;
+}
