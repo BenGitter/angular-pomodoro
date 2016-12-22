@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TrelloService } from '../trello.service';
 
 @Component({
   selector: 'timer',
@@ -7,9 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private trelloService:TrelloService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

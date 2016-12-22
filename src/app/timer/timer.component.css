@@ -19,14 +19,31 @@
 /* Settings */
 #controls{
   position: absolute;
-  top: 140px;
+  top: 120px;
   width: 220px;
   text-align: center;
   left: calc(50vw - 110px);
+  color: #333;
+}
+
+#controls h1{
+  font-weight: bolder;
+  font-size: 40px;
+}
+
+.fa{
+  cursor: pointer;
+}
+
+#controls span{
+  font-size: 25px;
+  padding-right: 10px;
 }
 
 /* State */
 #state{
   width: 100%;
   text-align: center;
+  color: #333;
+  font-size: 20px;
 }

@@ -9,6 +9,7 @@ import { TimerComponent } from './timer/timer.component';
 import { TrelloComponent } from './trello/trello.component';
 import { SettingsComponent } from './settings/settings.component';
 import { HomeComponent } from './home/home.component';
+import { PickerComponent } from './picker/picker.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +18,15 @@ import { HomeComponent } from './home/home.component';
     TimerComponent,
     TrelloComponent,
     SettingsComponent,
-    HomeComponent
+    HomeComponent,
+    PickerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [  ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

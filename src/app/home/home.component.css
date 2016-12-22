@@ -1,4 +1,9 @@
 .home{
-  height: calc(100vh - 55px);
+  min-height: 500px;
+  height: 100vh;
   max-height: 600px;
+  background-color: #A6A6F9;
+  margin: auto;
+  z-index: 0;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 6px rgba(0,0,0,0.23);
 }

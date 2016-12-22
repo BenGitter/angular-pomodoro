@@ -28,6 +28,7 @@
 }
 .title{
   cursor: pointer;
+  color: #333;
 }
 
 .head, .title{
