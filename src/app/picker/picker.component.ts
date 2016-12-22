@@ -14,19 +14,42 @@ import { TrelloService } from '../trello.service';
       state("in", style({
         'opacity': '1'
       })),
-      transition("void => *", animate(400))
+      transition("void => *", animate(400)),
+      transition("* => void", animate(400))
     ])
   ]
 })
 
 export class PickerComponent implements OnInit {
 
+  boards;
+  lists;
+  cards;
+
   constructor(private trelloService:TrelloService) { 
-    console.log(trelloService.pickerState);
+    
   }
 
   ngOnInit() {
     
+  }
+
+  toLists(board){
+    this.trelloService.selectedBoard = board;
+    this.trelloService.pickerView = "list";
+  }
+
+  toCards(list){
+    this.trelloService.selectedList = list;
+    this.trelloService.pickerView = "card";
+  }
+
+  closePicker(){
+    this.trelloService.pickerState = false;
+  }
+
+  goBack(){
+    this.trelloService.pickerView = (this.trelloService.pickerView == "card") ? "list" : "board";
   }
 
 }

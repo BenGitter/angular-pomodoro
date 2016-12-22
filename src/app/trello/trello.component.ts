@@ -11,25 +11,7 @@ export class TrelloComponent implements OnInit {
   // DOM elements
   title:HTMLElement;
   path:HTMLElement;
-
-  // Arrays with data
-  Boards:Array<any>;
-  Lists:Array<any>;
-  Cards:Array<any>;
-
-  // Selected
-  selectedBoard:any = {
-    name: "Board"
-  };
-  selectedList:any = {
-    name: "List"
-  };
-  selectedCard:any = {
-    name: "Select Trello Card..."
-  };
-
-
-
+  
   constructor(private trelloService:TrelloService) { }
 
   ngOnInit() {
@@ -41,8 +23,8 @@ export class TrelloComponent implements OnInit {
     }.bind(this));
 
     // For developing:
-    // event = new Event("click");
-    // this.title.dispatchEvent(event);
+    event = new Event("click");
+    this.title.dispatchEvent(event);
   }
 
 }

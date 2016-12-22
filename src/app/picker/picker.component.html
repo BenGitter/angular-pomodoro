@@ -1,6 +1,44 @@
 <div [@fade]="in" *ngIf="trelloService.pickerState" class="picker desktop-size">
   <div class="content">
-    <h2>Select a board:</h2>
-    <i class="fa fa-close"></i>
+    <div class="header">
+      <i class="fa fa-arrow-left" (click)="goBack()"></i>
+      <h2>Select a {{trelloService.pickerView}}:</h2>
+      <i class="fa fa-close" (click)="closePicker()"></i>
+    </div>
+
+    <!-- Boards -->
+    <div *ngIf="trelloService.pickerView=='board'" class="boards list">
+      <ul>
+        <li *ngFor="let board of trelloService.Boards" (click)="toLists(board)">
+          {{ board.name }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Lists -->
+    <div *ngIf="trelloService.pickerView=='list'" class="lists list">
+      <ul>
+        <li *ngFor="let list of trelloService.Lists[trelloService.selectedBoard.id]" (click)="toCards(list)">
+          {{ list.name }}
+        </li>
+
+        <li *ngIf="trelloService.Lists[trelloService.selectedBoard.id].length == 0">
+          No lists.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Items -->
+    <div *ngIf="trelloService.pickerView=='card'" class="cards list">
+      <ul>
+        <li *ngFor="let card of trelloService.Cards[trelloService.selectedList.id]">
+          {{ card.name }}
+        </li>
+
+        <li *ngIf="trelloService.Cards[trelloService.selectedList.id].length == 0">
+          No cards.
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

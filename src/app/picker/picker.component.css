@@ -27,7 +27,18 @@
   cursor: pointer;
 }
 
+.fa-arrow-left{
+  float: left;
+  font-size: 25px;
+  margin: 20px;
+  cursor: pointer;
+}
+
 h2{
   float: left;
   margin: 20px;
+}
+
+.list{
+  clear: both;
 }
