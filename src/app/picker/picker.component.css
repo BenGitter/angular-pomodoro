@@ -8,6 +8,7 @@
   position: absolute;
   top: 0;
   border-radius: 2px;
+  overflow: hidden;
 }
 
 .content{
@@ -18,27 +19,76 @@
   background-color: rgb(255,255,255);
   margin-top: 15px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 6px rgba(0,0,0,0.23);
+  /*overflow-y: scroll;*/
 }
 
 .fa-close{
   float: right;
-  margin: 20px;
-  font-size: 25px;
-  cursor: pointer;
 }
 
 .fa-arrow-left{
-  float: left;
-  font-size: 25px;
-  margin: 20px;
-  cursor: pointer;
+  float: left; 
 }
 
-h2{
+.fa{
+  margin: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.fa:hover{
+  color: #555;
+}
+
+h3{
   float: left;
   margin: 20px;
 }
 
 .list{
   clear: both;
+  overflow-y: scroll;
+  height: calc(100% - 70px);
+}
+.list::-webkit-scrollbar { 
+  display: none; 
+}
+
+.list div{
+  border-radius: 7px;
+  margin: 7px;
+  padding: 20px 5px;
+  text-align: center;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: .95;
+}
+
+.list div:hover{
+  opacity: 1;
+}
+
+.boards div{
+  color: white;
+}
+
+.lists div{
+  padding: 10px 5px;
+  font-size: 17px;
+  opacity: 0.8;
+}
+
+.cards div{
+  background-color: white;
+  padding: 8px 5px;
+  font-size: 17px;
+  font-weight: normal;
+  opacity: 0.85;
+}
+
+.header{
+  height: 20px;
 }

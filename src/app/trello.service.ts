@@ -6,8 +6,6 @@ declare var jQuery:any;
 @Injectable()
 export class TrelloService {
 
-  pickerView:string = "board";
-
   // Arrays with data
   Boards = [];
   Lists = [];
@@ -24,20 +22,25 @@ export class TrelloService {
     name: "Select Trello Card..."
   };
 
-  // Trello Picker shown or hidden
-  pickerState:boolean = false;
+  
+  pickerState:boolean = false;  // Trello Picker shown or hidden
+  pickerView:string = "board";  // view state of picker
+  displayName:string = this.selectedCard.name;
   
   constructor() {
     this.authorize();
   }
 
+  changeDisplayName(){
+    if(this.selectedCard.name.length > 50){
+      this.displayName = this.selectedCard.name.substring(0,48) + "...";
+    }else{
+      this.displayName = this.selectedCard.name;
+    }
+  }
+
   toggleDisplay(){
     this.pickerState = !this.pickerState;
-    this.showState();
-  }
-  
-  showState(){
-    console.log(this.pickerState);
   }
 
   authorize(){
@@ -56,69 +59,66 @@ export class TrelloService {
     });
   }
 
-    getBoards(){
-      var self = this;
+  getBoards(){
+    var self = this;
 
-      Trello.get('/members/me/boards/', 
-        function(items){
-          items.forEach(function(value, i){
-            if(value.name === "Welcome Board"){
-              return false;             // leave out 'Welcome Board'
-            } 
+    Trello.get('/members/me/boards/', 
+      function(items){
+        items.forEach(function(value, i){
+          if(value.name === "Welcome Board"){
+            return false;             // leave out 'Welcome Board'
+          } 
 
-            self.Boards.push(value);    // push board
-            self.Lists[value.id] = [];  // make empty entry
+          self.Boards.push(value);    // push board
+          self.Lists[value.id] = [];  // make empty entry
+          self.getList(value.id);     // get Lists
+        });
+      },
+      function() { 
+        console.log("Failed to load boards"); 
+      }
+    );
+  }
 
-            self.getList(value.id);     // get Lists
-          });
+  getList(id){
+    var self = this;
+    var lists = [];
 
-          console.log(self.Boards);
-        },
-        function() { 
-          console.log("Failed to load boards"); 
+    Trello.get("/boards/" + id + "/lists",
+      function(items){
+        items.forEach(function(value, i){
+          lists.push(value);              // push list
+          self.Cards[value.id] = [];      // make empty entry
+          self.getCards(value.id);        // get Cards
+        });
+
+        // Only add if more than one list in board
+        if(lists.length > 0){
+          self.Lists[lists[0].idBoard] = lists;
+        }  
+      },
+      function() { 
+        console.log("Failed to load lists"); 
+      }
+    );
+  }
+
+  getCards(id){
+    var self = this;
+    var cards = [];
+
+    Trello.get("/lists/" + id + "/cards",
+      function(items){
+        items.forEach(function(value, i){
+          cards.push(value);      // push card
+        });
+
+        // Only add if more than one card in list
+        if(cards.length > 0){
+          self.Cards[cards[0].idList] = cards;
         }
-      );
-    }
-
-    getList(id){
-      var self = this;
-      var lists = [];
-
-      Trello.get("/boards/" + id + "/lists",
-        function(items){
-          items.forEach(function(value, i){
-            lists.push(value);              // push list
-            self.Cards[value.id] = [];      // make empty entry
-            self.getCards(value.id);        // get Cards
-          });
-
-          // Only add if more than one list in board
-          if(lists.length > 0){
-            self.Lists[lists[0].idBoard] = lists;
-          }  
-        },
-        function() { 
-          console.log("Failed to load lists"); 
-        }
-      );
-    }
-
-    getCards(id){
-      var self = this;
-      var cards = [];
-
-      Trello.get("/lists/" + id + "/cards",
-        function(items){
-          items.forEach(function(value, i){
-            cards.push(value);      // push card
-          });
-
-          // Only add if more than one card in list
-          if(cards.length > 0){
-            self.Cards[cards[0].idList] = cards;
-          }
-        },
-        function() { console.log("Failed to load cards"); }
-      );
-    }
+      },
+      function() { console.log("Failed to load cards"); }
+    );
+  }
 }

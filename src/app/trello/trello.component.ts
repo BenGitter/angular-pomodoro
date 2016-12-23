@@ -11,7 +11,7 @@ export class TrelloComponent implements OnInit {
   // DOM elements
   title:HTMLElement;
   path:HTMLElement;
-  
+
   constructor(private trelloService:TrelloService) { }
 
   ngOnInit() {
