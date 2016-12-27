@@ -2,9 +2,9 @@
   <div class="content">
 
     <div class="header">
-      <i [style.visibility]="trelloService.pickerView=='board'?'hidden':'visible'" class="fa fa-arrow-left" (click)="goBack()"></i>
+      <i [style.visibility]="trelloService.pickerView=='board'?'hidden':'visible'" class="no-select fa fa-arrow-left" (click)="goBack()"></i>
       <h3>Select a {{trelloService.pickerView}}:</h3>
-      <i class="fa fa-close" (click)="closePicker()"></i>
+      <i class="no-select fa fa-close" (click)="closePicker()"></i>
     </div>
 
     <!-- Boards -->
