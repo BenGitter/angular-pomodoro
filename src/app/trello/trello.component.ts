@@ -8,23 +8,34 @@ import { TrelloService } from '../trello.service';
 })
 export class TrelloComponent implements OnInit {
 
-  // DOM elements
-  title:HTMLElement;
-  path:HTMLElement;
+  card;
+  home:HTMLElement;
+  spacer:HTMLElement;
 
   constructor(private trelloService:TrelloService) { }
 
   ngOnInit() {
-    this.title = <HTMLElement>document.getElementsByClassName("title")[0];
-    this.path = <HTMLElement>document.getElementsByClassName("head")[0];
 
-    this.title.addEventListener("click", function(){
+    this.card = document.getElementById("trelloCard") || document;
+
+    this.card.addEventListener("click", function(){
       this.trelloService.toggleDisplay();
     }.bind(this));
 
+
     // For developing:
-    event = new Event("click");
-    this.title.dispatchEvent(event);
+    // event = new Event("click");
+    // this.card.dispatchEvent(event);
+
+    this.home = <HTMLElement>document.getElementsByClassName("home")[0];
+    this.spacer = <HTMLElement>document.getElementsByClassName("spacer")[0];
+
+    this.positioning();   // run it on start
+  }
+
+  positioning(){
+    var height = (this.home.offsetHeight - 500) * 0.5;
+    this.spacer.style.height = height + "px";
   }
 
 }

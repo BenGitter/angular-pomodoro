@@ -1,17 +1,24 @@
-<div class="desktop-size navbar">
+<div class="desktop-size navbar" (window:resize)="positioning()">
   <div class="mobile-size">
 
-    <div id="trelloCard">
-      <div class="head">
-        <span>{{trelloService.selectedBoard.name}}</span>
-        <span> &gt; </span>
-        <span>{{trelloService.selectedList.name}}</span>
-      </div>
+    <!-- Curve -->
+    <svg id="svg-curve" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 300 50">
+      <path d="M0,50 Q 150 -10 300 50"
+        stroke="#FAFAFA" 
+        fill="#FAFAFA" 
+        stroke-width="1"/>
+    </svg> 
 
-      <div class="title">
-        <h3>{{trelloService.displayName}}</h3>
-      </div>
+    <!-- Trello stuff -->
 
+    <div class="rest">
+      <!-- Spacer -->
+      <div class="spacer"></div>
+      <!-- End Spacer -->
+
+      <div id="trelloCard" class="no-select">
+        {{trelloService.selectedCard.name}}
+      </div>
     </div>
     
   </div>

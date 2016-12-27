@@ -1,37 +1,26 @@
+#svg-curve{
+  border-bottom: 1px solid #FAFAFA;
+  margin-bottom: -6px;
+}
+
+.rest{
+  background-color: #FAFAFA;
+  height: 300px;
+  padding-top: 40px;
+}
+
+.spacer{
+  width: 100%;
+}
+
 #trelloCard{
-  background-color: #FFEFBF;
-  margin: auto;
+  border-bottom: 2px solid #423EA2;
   width: 80%;
-  height: 100px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.19);
   text-align: center;
-}
-
-#trelloCard span{
-  display: block;
-  float: left;
-  margin-right: 5px;
-  padding-top: 10px;
-}
-.head span:nth-child(1){
-  color: #333;
-}
-.head span:nth-child(2){
-  color: #888;
-}
-.head span:nth-child(3){
-  color: #444;
-}
-
-.title h3{
-  padding: 15px;
-}
-.title{
+  font-size: 20px;
+  margin-left: 10%;
   cursor: pointer;
+  padding: 10px;
+  box-sizing: border-box;
   color: #333;
-}
-
-.head, .title{
-  clear: both;
-  padding-left: 10px;
 }

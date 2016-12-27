@@ -1,7 +1,7 @@
 .navbar{
-  background-color: rgba(31,31,72,0.6);
+  background-color: #423EA2;
   padding: 12px 10px 12px 60px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.19), 5px 0 10px rgba(0,0,0,0.23), -5px 0 10px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 4px rgba(0,0,0,0.19);
   z-index: 1;
   height: 30px;
   position: relative;
@@ -10,6 +10,7 @@
 h2{
   margin: 0;
   color: white;
+  text-shadow: 1px 1px rgba(0,0,0,0.6);
 }
 
 i.fa{

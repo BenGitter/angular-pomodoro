@@ -10,6 +10,9 @@ export class TimerComponent implements OnInit {
 
   constructor(private trelloService:TrelloService) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+  }
+
+
 
 }
