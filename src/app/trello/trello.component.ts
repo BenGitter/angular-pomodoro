@@ -9,8 +9,8 @@ import { TrelloService } from '../trello.service';
 export class TrelloComponent implements OnInit {
 
   card;
-  home:HTMLElement;
-  spacer:HTMLElement;
+  
+  
 
   constructor(private trelloService:TrelloService) { }
 
@@ -27,15 +27,9 @@ export class TrelloComponent implements OnInit {
     // event = new Event("click");
     // this.card.dispatchEvent(event);
 
-    this.home = <HTMLElement>document.getElementsByClassName("home")[0];
-    this.spacer = <HTMLElement>document.getElementsByClassName("spacer")[0];
-
-    this.positioning();   // run it on start
+    
   }
 
-  positioning(){
-    var height = (this.home.offsetHeight - 500) * 0.5;
-    this.spacer.style.height = height + "px";
-  }
+  
 
 }

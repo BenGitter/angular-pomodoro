@@ -68,3 +68,7 @@
 #time span:first-child{
   text-align: right;
 }
+
+.spacer{
+  width: 100%;
+}

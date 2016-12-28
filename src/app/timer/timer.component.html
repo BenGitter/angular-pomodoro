@@ -1,4 +1,4 @@
-<div class="desktop-size timer">
+<div class="desktop-size timer" (window:resize)="positioning()">
   <div class="mobile-size">
 
     <!-- Circles -->
@@ -27,6 +27,7 @@
     </div>
     <!-- End Time -->
 
+    <div class="spacer"></div>
 
     <!-- Controls  -->
     <div id="controls">
