@@ -20,3 +20,26 @@
   box-sizing: border-box;
   color: #333;
 }
+
+#loginTrello{
+  width: 80%;
+  margin-left: 10%;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+#loginTrello img{
+  height: 70px;
+  float: left;
+}
+
+#loginTrello span{
+  float: right;
+  font-size: 25px;
+  width: calc(100% - 90px);
+  margin-left: 10px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #423EA2;
+}

@@ -6,6 +6,9 @@ declare var jQuery:any;
 @Injectable()
 export class TrelloService {
 
+  // Authorized?
+  authorized:boolean = false;
+
   // Arrays with data
   Boards = [];
   Lists = [];
@@ -28,7 +31,7 @@ export class TrelloService {
   displayName:string = this.selectedCard.name;
   
   constructor() {
-    this.authorize();
+    this.authorize(false);
   }
 
   changeDisplayName(){
@@ -43,7 +46,7 @@ export class TrelloService {
     this.pickerState = !this.pickerState;
   }
 
-  authorize(){
+  authorize(interactive){
     var self = this;
 
     Trello.authorize({
@@ -53,8 +56,11 @@ export class TrelloService {
           read: true,
           write: true },
         expiration: "never",
-        interactive: true,
-        success: function(){ self.getBoards() },
+        interactive: interactive,
+        success: function(){
+          self.authorized = true;
+          self.getBoards(); 
+        },
         error: function(err){ console.log(err); }
     });
   }
@@ -121,4 +127,15 @@ export class TrelloService {
       function() { console.log("Failed to load cards"); }
     );
   }
+
+  // testAuthorization(self){
+  //   Trello.get("/members/me", 
+  //     function(succes){ 
+  //       console.log(succes); 
+  //       self.authorized = true;
+  //     }, 
+  //     function(error){ 
+  //       console.log(error); 
+  //   });
+  // }
 }
