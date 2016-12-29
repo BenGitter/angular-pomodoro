@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TimerService {
 
-  minutes:number = 0;             // remaining minutes
-  seconds:number = 10;            // remaining seconds
+  minutes:number;             // remaining minutes
+  seconds:number;            // remaining seconds
 
-  minutesTxt:string = "01";       // string version of minutes     
-  secondsTxt:string = "00";       // string version of seconds
+  minutesTxt:string;       // string version of minutes     
+  secondsTxt:string;       // string version of seconds
 
   timer;                          // reference to the current timer
   running:boolean = false;        // on start timer is paused
@@ -19,6 +19,8 @@ export class TimerService {
   audio:HTMLAudioElement;            // will get audio element from timer component
 
   constructor() { 
+    this.updateTime();
+    this.updateStrings();
   }
 
 
