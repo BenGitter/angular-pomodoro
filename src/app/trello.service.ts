@@ -36,9 +36,7 @@ export class TrelloService {
 
   changeDisplayName(){
     if(this.selectedCard.name.length > 50){
-      this.displayName = this.selectedCard.name.substring(0,48) + "...";
-    }else{
-      this.displayName = this.selectedCard.name;
+      this.selectedCard.name = this.selectedCard.name.substring(0,48) + "...";
     }
   }
 
