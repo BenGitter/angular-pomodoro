@@ -12,11 +12,11 @@
     <!-- Trello stuff -->
 
     <div class="rest">
-      <div [hidden]="!trelloService.authorized" id="trelloCard" class="no-select">
+      <div [hidden]="!trelloService.authorized" id="trelloCard" class="no-select" [@showSettings]="timerService.showSettingsTxt">
         {{trelloService.selectedCard.name}}
       </div>
 
-      <div [hidden]="trelloService.authorized" id="loginTrello" (click)="trelloService.authorize(true)">
+      <div [hidden]="trelloService.authorized" id="loginTrello" (click)="trelloService.authorize(true)" [@showSettings]="timerService.showSettingsTxt">
         <img src="assets/trello-dog-logo.png" alt="TRELLO">
         <span class="no-select">Log in to Trello</span>
       </div>

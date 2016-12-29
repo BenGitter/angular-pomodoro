@@ -1,10 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, 
+        trigger, state, style, transition, animate } from '@angular/core';
 import { TrelloService } from '../trello.service';
+import { TimerService } from '../timer.service';
 
 @Component({
   selector: 'trello',
   templateUrl: './trello.component.html',
-  styleUrls: ['./trello.component.css']
+  styleUrls: ['./trello.component.css'],
+  animations: [
+    trigger("showSettings", [
+      state("hide", style({
+        'margin-left': '10%',
+        'opacity': '1'
+      })),
+      state("show", style({
+        'margin-left': '-80%',
+        'opacity': '0'
+      })),
+      transition("hide => show", animate(300)),
+      transition("show => hide", animate(500))
+    ])
+  ]
 })
 export class TrelloComponent implements OnInit {
 
@@ -12,7 +28,7 @@ export class TrelloComponent implements OnInit {
   
   
 
-  constructor(private trelloService:TrelloService) { }
+  constructor(private trelloService:TrelloService, private timerService:TimerService) { }
 
   ngOnInit() {
 

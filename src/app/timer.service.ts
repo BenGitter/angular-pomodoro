@@ -18,6 +18,9 @@ export class TimerService {
 
   audio:HTMLAudioElement;            // will get audio element from timer component
 
+  showSettings:boolean = false;     // settings displayed?
+  showSettingsTxt = "hide";         // string version for animation
+
   constructor() { 
     this.updateTime();
     this.updateStrings();
@@ -85,6 +88,11 @@ export class TimerService {
 
   playSound(){
     this.audio.play();
+  }
+
+  toggleSettings(){
+    this.showSettings = !this.showSettings;
+    this.showSettingsTxt = (this.showSettings) ? "show" : "hide";
   }
 
 }

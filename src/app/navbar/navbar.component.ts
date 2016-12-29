@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { TrelloService } from '../trello.service';
+import { TimerService } from '../timer.service';
 
 @Component({
   selector: 'navbar',
@@ -10,7 +12,7 @@ export class NavbarComponent implements OnInit {
 
   settingsButton:HTMLElement;
 
-  constructor(private trelloService:TrelloService) { }
+  constructor(private trelloService:TrelloService, private timerService:TimerService) { }
 
   ngOnInit() {
     
