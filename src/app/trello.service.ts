@@ -127,15 +127,4 @@ export class TrelloService {
       function() { console.log("Failed to load cards"); }
     );
   }
-
-  // testAuthorization(self){
-  //   Trello.get("/members/me", 
-  //     function(succes){ 
-  //       console.log(succes); 
-  //       self.authorized = true;
-  //     }, 
-  //     function(error){ 
-  //       console.log(error); 
-  //   });
-  // }
 }

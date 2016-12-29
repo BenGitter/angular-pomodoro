@@ -22,8 +22,8 @@
 
     <!-- Time -->
     <div id="time">
-      <span>25</span>
-      <span>00</span>
+      <span>{{timerService.minutesTxt}}</span>
+      <span>{{timerService.secondsTxt}}</span>
     </div>
     <!-- End Time -->
 
@@ -31,11 +31,17 @@
 
     <!-- Controls  -->
     <div id="controls">
-      <div id="play" class="no-select">
-        <i class="no-select fa fa-play"></i>
+      <div id="play" class="no-select" (click)="timerService.toggleTime()">
+        <i class="no-select fa" [ngClass]="{'fa-play': !timerService.running, 'fa-pause': timerService.running}"></i>
       </div>
     </div>
     <!-- End Controls -->
     
   </div>
 </div>
+
+
+<!-- Audio -->
+<audio>
+  <source src="assets/beep.mp3" type="audio/mp3" />
+</audio>

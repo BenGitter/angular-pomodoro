@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { TrelloService } from '../trello.service';
+import { TimerService } from '../timer.service';
 
 @Component({
   selector: 'timer',
@@ -13,9 +15,10 @@ export class TimerComponent implements OnInit {
   play:HTMLElement;
   circle1:HTMLElement;
   circle2:HTMLElement;
-  time:HTMLElement
+  time:HTMLElement;
+  audio:HTMLAudioElement;
 
-  constructor(private trelloService:TrelloService) { }
+  constructor(private trelloService:TrelloService, private timerService:TimerService) { }
 
   ngOnInit() { 
     this.home = <HTMLElement>document.getElementsByClassName("home")[0];
@@ -24,6 +27,9 @@ export class TimerComponent implements OnInit {
     this.circle1 = <HTMLElement>document.getElementsByClassName("circle")[0];
     this.circle2 = <HTMLElement>document.getElementsByClassName("circle")[1];
     this.time = <HTMLElement>document.getElementById("time");
+    this.audio = <HTMLAudioElement>document.getElementsByTagName("audio")[0];
+
+    this.timerService.audio = this.audio;
 
     this.positioning();   // run it on start
   }
