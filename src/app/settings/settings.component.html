@@ -1,3 +1,33 @@
-<div class="mobile-size settings" [@showSettings]="timerService.showSettingsTxt">
-  HELLO!
+<div class="desktop-size settings">
+  <div class="mobile-size">
+    <div class="items" [@showSettings]="timerService.showSettingsTxt">
+
+      <div class="pick-length">
+        <!-- Select number-->
+        <div class="select no-select">
+          <span class="dec" (click)="changeLength(false, 'session')">&minus;</span>
+          <span class="number">{{timerService.sessionLength}}</span>
+          <span class="inc" (click)="changeLength(true, 'session')">+</span>
+        </div>
+        <!-- Title -->
+        <div class="title">
+          <span>Session Length</span>
+        </div>
+      </div>
+
+      <div class="pick-length">
+        <!-- Select number-->
+        <div class="select no-select">
+          <span class="dec" (click)="changeLength(false, 'break')">&minus;</span>
+          <span class="number">{{timerService.breakLength}}</span>
+          <span class="inc" (click)="changeLength(true, 'break')">+</span>
+        </div>
+        <!-- Title -->
+        <div class="title">
+          <span>Break Length</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>

@@ -3,27 +3,29 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TimerService {
 
-  minutes:number;             // remaining minutes
-  seconds:number;            // remaining seconds
+  minutes:number;           // remaining minutes
+  seconds:number;           // remaining seconds
 
   minutesTxt:string;       // string version of minutes     
   secondsTxt:string;       // string version of seconds
 
-  timer;                          // reference to the current timer
-  running:boolean = false;        // on start timer is paused
-  state:string = "session"        // current state (session || break)
+  timer;                            // reference to the current timer
+  running:boolean = false;          // on start timer is paused
+  state:string = "session"          // current state (session || break)
 
-  sessionLenght:number = 10;   // length of session in seconds 
-  breakLength:number = 5;      // length of break in seconds
+  sessionLength:number = 2;         // length of session in minutes 
+  breakLength:number = 1;           // length of break in minutes
 
-  audio:HTMLAudioElement;            // will get audio element from timer component
+  audio:HTMLAudioElement;           // will get audio element from timer component
 
   showSettings:boolean = false;     // settings displayed?
   showSettingsTxt = "hide";         // string version for animation
 
+  timerStarted:boolean = false;     // check if timer has started
+
   constructor() { 
-    this.updateTime();
-    this.updateStrings();
+    this.updateTime();              // fill minutes and seconds
+    this.updateStrings();           // fill string version of minutes and seconds
   }
 
 
@@ -49,6 +51,7 @@ export class TimerService {
     }.bind(this), 1000);
 
     this.running = true;
+    this.timerStarted = true;
   }
 
   stopTime(){
@@ -68,13 +71,13 @@ export class TimerService {
     this.updateTime();                                              // Get new time (depending on state)
     this.updateStrings();                                           // Update strings
     this.playSound();                                               // Play sound to indicate finished session/break
+    this.timerStarted = false;                                      // Set timerStarted back to false
   }
 
   updateTime(){
     // Get new time and split in minutes and seconds;
-    var newTime = (this.state == "session") ? this.sessionLenght : this.breakLength; 
-    this.seconds = newTime % 60;    
-    this.minutes = (newTime - this.seconds) / 60;
+    this.minutes = (this.state == "session") ? this.sessionLength : this.breakLength; 
+    this.seconds = 0;    
 
     console.log(this.state);
   }
