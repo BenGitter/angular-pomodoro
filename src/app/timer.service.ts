@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 
+function _window() : any {
+   // return the global native browser window object
+   return window;
+}
+
 @Injectable()
 export class TimerService {
 
@@ -23,9 +28,17 @@ export class TimerService {
 
   timerStarted:boolean = false;     // check if timer has started
 
+  // Stuff for Audio Web API
+  winRef = _window();
+  soundBuffer = null;
+  context = new (this.winRef.AudioContext || this.winRef.webkitAudioContext);
+  source;
+
   constructor() { 
     this.updateTime();              // fill minutes and seconds
     this.updateStrings();           // fill string version of minutes and seconds
+
+    this.loadSound();               // load sound
   }
 
 
@@ -89,13 +102,36 @@ export class TimerService {
   }
 
 
-  playSound(){
-    this.audio.play();
-  }
+  // playSound(){
+  //   this.audio.play();
+  // }
 
   toggleSettings(){
     this.showSettings = !this.showSettings;
     this.showSettingsTxt = (this.showSettings) ? "show" : "hide";
+  }
+
+  loadSound() {
+    var request = new XMLHttpRequest();
+    var url = "assets/beep.mp3";
+    
+    request.open('GET', url, true);
+    request.responseType = 'arraybuffer';
+
+    // Decode asynchronously
+    request.onload = function() {
+      this.context.decodeAudioData(request.response, function(buffer) {
+        this.soundBuffer = buffer;
+      }.bind(this), function(){});
+    }.bind(this);
+    request.send();
+  }
+
+  playSound(){
+    this.source = this.context.createBufferSource();        // creates a sound source
+    this.source.buffer = this.soundBuffer;                  // tell the source which sound to play
+    this.source.connect(this.context.destination);          // connect the source to the context's destination (the speakers)
+    this.source.start();                                                         
   }
 
 }
