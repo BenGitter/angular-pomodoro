@@ -27,6 +27,8 @@ export class TimerService {
   showSettingsTxt = "hide";         // string version for animation
 
   timerStarted:boolean = false;     // check if timer has started
+  startedLength:number;             // lenght of started session/break
+  percentageDone:number;
 
   // Stuff for Audio Web API
   winRef = _window();
@@ -54,6 +56,9 @@ export class TimerService {
       // Decrease seconds every iteration
       this.seconds--;
 
+      // Update part of total
+      this.percentageDone = 1 - (this.minutes*60 + this.seconds) / (this.startedLength*60 -1);
+
       // Update strings
       this.updateStrings();
 
@@ -64,7 +69,12 @@ export class TimerService {
     }.bind(this), 1000);
 
     this.running = true;
-    this.timerStarted = true;
+
+    if(!this.timerStarted){
+      this.startedLength = (this.state == "session") ? this.sessionLength : this.breakLength;
+      this.timerStarted = true;
+    } 
+    
   }
 
   stopTime(){
@@ -85,6 +95,9 @@ export class TimerService {
     this.updateStrings();                                           // Update strings
     this.playSound();                                               // Play sound to indicate finished session/break
     this.timerStarted = false;                                      // Set timerStarted back to false
+    
+    this.percentageDone = 0;
+
   }
 
   updateTime(){

@@ -18,6 +18,10 @@ export class TimerComponent implements OnInit {
   time:HTMLElement;
   audio:HTMLAudioElement;
 
+  // Circle animation
+  path:SVGPathElement;  
+  pathLength:number;   
+
   constructor(private trelloService:TrelloService, private timerService:TimerService) { }
 
   ngOnInit() { 
@@ -32,6 +36,18 @@ export class TimerComponent implements OnInit {
     this.timerService.audio = this.audio;
 
     this.positioning();   // run it on start
+
+
+    // Circle animation
+    this.path = <SVGPathElement>document.querySelector("#circle-top path");
+    this.pathLength = this.path.getTotalLength();
+    console.log(this.pathLength);
+    this.path.style.transition = 'none';
+    this.path.style.strokeDasharray = this.pathLength + ' ' + this.pathLength;
+    // this.path.style.strokeDashoffset = length.toString();
+    this.path.getBoundingClientRect();
+    this.path.style.transition = 'stroke-dashoffset 1s linear';
+
   }
 
 
@@ -44,6 +60,23 @@ export class TimerComponent implements OnInit {
     this.circle2.style.top = (offsetCircle + 70) + "px";
     this.play.style.marginTop = (175+height-offsetCircle) + "px";
     this.time.style.top = (offsetCircle + 140) + "px";
+  }
+
+  updateCircle(){
+    var i = 0;
+    var total = 10;
+
+    setInterval(function(){
+      i++;
+      var part = i/total;
+
+      if(i > total){
+        return false;
+      }
+
+      this.path.style.strokeDashoffset = part*this.pathLength;
+
+    }.bind(this), 1000);
   }
 
 

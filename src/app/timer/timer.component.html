@@ -3,18 +3,19 @@
 
     <!-- Circles -->
     <div class="circles">
-      <svg id="circle-bottom" class="circle" xmlns="http://www.w3.org/2000/svg" version="1.1">
-        <path d="M105,5 A100,100 0 1,1 105,205 A100,100 0 1,1 105,5"
-              stroke="#FAFAFA" 
-              fill="none" 
-              stroke-width="5"/>
-      </svg> 
-
       <svg id="circle-top" class="circle" xmlns="http://www.w3.org/2000/svg" version="1.1">
         <path d="M105,5 A100,100 0 1,1 105,205 A100,100 0 1,1 105,5"
               stroke="#FAFAFA" 
               fill="none" 
-              stroke-width="1"/>
+              stroke-width="5" 
+              [style.stroke-dashoffset]="timerService.percentageDone * pathLength" />
+      </svg> 
+
+      <svg id="circle-bottom" class="circle" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <path d="M105,5 A100,100 0 1,1 105,205 A100,100 0 1,1 105,5"
+              stroke="rgba(255, 123, 216, 0.5)" 
+              fill="none" 
+              stroke-width="2"/>
       </svg> 
     </div>
     <!-- End Circle -->
