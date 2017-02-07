@@ -53,7 +53,7 @@ export class TrelloService {
         scope: {
           read: true,
           write: true },
-        expiration: "never",
+        expiration: "1hour",
         interactive: interactive,
         success: function(){
           self.authorized = true;
