@@ -16,7 +16,7 @@ export class TimerService {
 
   timer;                            // reference to the current timer
   running:boolean = false;          // on start timer is paused
-  state:string = "session"          // current state (session || break)
+  state:string = "SESSION"          // current state (SESSION || BREAK)
 
   sessionLength:number = 2;         // length of session in minutes 
   breakLength:number = 1;           // length of break in minutes
@@ -71,7 +71,7 @@ export class TimerService {
     this.running = true;
 
     if(!this.timerStarted){
-      this.startedLength = (this.state == "session") ? this.sessionLength : this.breakLength;
+      this.startedLength = (this.state == "SESSION") ? this.sessionLength : this.breakLength;
       this.timerStarted = true;
     } 
     
@@ -90,7 +90,7 @@ export class TimerService {
 
   completed(){
     this.stopTime();                                                // Stop the timer
-    this.state = (this.state == "session") ? "break" : "session";   // Change state
+    this.state = (this.state == "SESSION") ? "BREAK" : "SESSION";   // Change state
     this.updateTime();                                              // Get new time (depending on state)
     this.updateStrings();                                           // Update strings
     this.playSound();                                               // Play sound to indicate finished session/break
@@ -102,7 +102,7 @@ export class TimerService {
 
   updateTime(){
     // Get new time and split in minutes and seconds;
-    this.minutes = (this.state == "session") ? this.sessionLength : this.breakLength; 
+    this.minutes = (this.state == "SESSION") ? this.sessionLength : this.breakLength; 
     this.seconds = 0;    
 
     console.log(this.state);
