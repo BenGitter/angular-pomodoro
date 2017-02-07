@@ -11,7 +11,7 @@ body,html{
 }
 
 .desktop-size{
-  max-width: 400px;
+  max-width: 420px;
   margin: auto;
   box-sizing: border-box;
 }
