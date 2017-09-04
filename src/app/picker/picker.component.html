@@ -9,14 +9,16 @@
 
     <!-- Boards -->
     <div *ngIf="trelloService.pickerView=='board'" class="boards list">
-      <div *ngFor="let board of trelloService.Boards" [style.backgroundColor]="trelloColors[board.prefs.background].board" (click)="toLists(board)">
+      <div *ngFor="let board of trelloService.Boards" 
+        [style.background]="trelloColors[board.prefs.background]?.board || 'url('+board.prefs.backgroundImageScaled[1].url +')'" 
+        (click)="toLists(board)">
         {{ board.name }}
       </div>
     </div>
 
     <!-- Lists -->
     <div *ngIf="trelloService.pickerView=='list'" class="lists list">
-      <div *ngFor="let list of trelloService.Lists[trelloService.selectedBoard.id]" [style.backgroundColor]="trelloColors[trelloService.selectedBoard.prefs.background].list" (click)="toCards(list)">
+      <div *ngFor="let list of trelloService.Lists[trelloService.selectedBoard.id]" [style.backgroundColor]="trelloColors[trelloService.selectedBoard.prefs.background]?.list || '#CCC'" (click)="toCards(list)">
         {{ list.name }}
       </div>
 
@@ -26,7 +28,7 @@
     </div>
 
     <!-- Items -->
-    <div *ngIf="trelloService.pickerView=='card'" class="cards list" [style.backgroundColor]="trelloColors[trelloService.selectedBoard.prefs.background].list">
+    <div *ngIf="trelloService.pickerView=='card'" class="cards list" [style.backgroundColor]="trelloColors[trelloService.selectedBoard.prefs.background]?.list || '#CCC'">
       <div *ngFor="let card of trelloService.Cards[trelloService.selectedList.id]" (click)="selectCard(card)">
         {{ card.name }}
       </div>

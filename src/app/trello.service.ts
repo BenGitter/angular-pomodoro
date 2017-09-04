@@ -77,6 +77,8 @@ export class TrelloService {
           self.Lists[value.id] = [];  // make empty entry
           self.getList(value.id);     // get Lists
         });
+
+        console.log(self.Boards);
       },
       function() { 
         console.log("Failed to load boards"); 
